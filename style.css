@@ -80,3 +80,54 @@ body {
         padding: 0 1rem;
     }
 }
+
+.search-section {
+  padding: 2rem 1rem;
+
+  display: flex;
+  justify-content: center;
+}
+
+.search-bar {
+  width: 100%;
+
+  display: flex;
+  gap: 0.5rem;
+}
+
+.search-bar input {
+  flex: 1;
+
+  padding: 0.9rem 1rem;
+
+  border: 2px solid #ccc;
+  border-radius: 8px;
+
+  font-size: 1rem;
+}
+
+.search-bar button {
+  padding: 0.9rem 1.2rem;
+
+  border: none;
+  border-radius: 8px;
+
+  background: #111;
+  color: white;
+
+  cursor: pointer;
+
+  transition: 0.3s;
+}
+
+.search-bar button:hover {
+  background: #333;
+}
+
+@media (min-width: 768px) {
+
+  .search-bar {
+    max-width: 700px;
+  }
+
+}
