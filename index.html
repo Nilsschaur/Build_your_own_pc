@@ -45,6 +45,111 @@
 
 </section>
 
+<section class="prebuild-section">
+
+  <div class="section-header">
+    <h2>PreBuilds</h2>
+  </div>
+
+  <div class="prebuild-container" id="prebuildContainer">
+
+    <div class="card">
+      <div class="card-image"></div>
+      <h3>Gaming Beast</h3>
+      <p>RTX 4070 • Ryzen 7</p>
+    </div>
+
+    <div class="card">
+      <div class="card-image"></div>
+      <h3>Budget Build</h3>
+      <p>RTX 4060 • i5</p>
+    </div>
+
+    <div class="card">
+      <div class="card-image"></div>
+      <h3>Streamer PC</h3>
+      <p>RTX 4080 • Ryzen 9</p>
+    </div>
+
+    <div class="card">
+      <div class="card-image"></div>
+      <h3>Ultimate Setup</h3>
+      <p>RTX 4090 • i9</p>
+    </div>
+
+    <div class="card">
+      <div class="card-image"></div>
+      <h3>Mini Build</h3>
+      <p>RTX 4060 • Ryzen 5</p>
+    </div>
+
+    <div class="card">
+      <div class="card-image"></div>
+      <h3>White Edition</h3>
+      <p>RTX 4070 Ti • i7</p>
+    </div>
+
+  </div>
+
+</section>
+
+<section class="builder-section">
+
+  <!-- LEFT SIDE -->
+  <div class="parts-sidebar">
+
+    <button class="part-btn" data-part="gpu">GPU</button>
+    <button class="part-btn" data-part="cpu">CPU</button>
+    <button class="part-btn" data-part="ram">RAM</button>
+    <button class="part-btn" data-part="ssd">SSD</button>
+    <button class="part-btn" data-part="psu">PSU</button>
+
+  </div>
+
+  <!-- RIGHT SIDE -->
+  <div class="preview-panel">
+
+    <h2>Din Build</h2>
+
+    <div id="selectedParts">
+
+      <p>GPU: Ingen vald</p>
+      <p>CPU: Ingen vald</p>
+      <p>RAM: Ingen vald</p>
+      <p>SSD: Ingen vald</p>
+      <p>PSU: Ingen vald</p>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- MODAL -->
+<div class="modal" id="partModal">
+
+  <div class="modal-content">
+
+    <div class="modal-top">
+
+      <h2 id="modalTitle">Välj Del</h2>
+
+      <button id="closeModal">✖</button>
+
+    </div>
+
+    <input
+      type="text"
+      id="searchInput"
+      placeholder="Sök delar..."
+    />
+
+    <div id="partsContainer"></div>
+
+  </div>
+
+</div>
+
     <script src="script.js"></script>
 </body>
 </html>
