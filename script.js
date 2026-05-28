@@ -1,13 +1,9 @@
-// NAVBAR
+const hamburger = document.getElementById("hamburger")
+const navMenu = document.getElementById("navMenu")
 
-const hamburger = document.getElementById("hamburger");
-const navMenu = document.getElementById("navMenu");
-
-hamburger.addEventListener("click", () => {
-  navMenu.classList.toggle("active");
-});
-
-// DATA
+hamburger.onclick = () => {
+  navMenu.classList.toggle("active")
+}
 
 const partsData = {
 
@@ -40,9 +36,7 @@ const partsData = {
     { name: "MSI 1000W Gold", price: "2 199 kr" }
   ]
 
-};
-
-// SELECTED BUILD
+}
 
 const selectedBuild = {
   gpu: null,
@@ -50,78 +44,68 @@ const selectedBuild = {
   ram: null,
   ssd: null,
   psu: null
-};
+}
 
-// ELEMENTS
+const modal = document.getElementById("partModal")
+const modalTitle = document.getElementById("modalTitle")
+const closeModal = document.getElementById("closeModal")
+const partsContainer = document.getElementById("partsContainer")
+const searchInput = document.getElementById("searchInput")
+const selectedParts = document.getElementById("selectedParts")
 
-const modal = document.getElementById("partModal");
-const modalTitle = document.getElementById("modalTitle");
-const closeModal = document.getElementById("closeModal");
-const partsContainer = document.getElementById("partsContainer");
-const searchInput = document.getElementById("searchInput");
-const selectedParts = document.getElementById("selectedParts");
-
-let currentPart = "";
-
-// OPEN MODAL
+let currentPart = ""
 
 document.querySelectorAll(".part-btn").forEach(button => {
 
-  button.addEventListener("click", () => {
+  button.onclick = () => {
 
-    currentPart = button.dataset.part;
+    currentPart = button.dataset.part
 
-    modal.classList.add("active");
+    modal.classList.add("active")
 
     modalTitle.textContent =
-      `Välj ${currentPart.toUpperCase()}`;
+      `Välj ${currentPart.toUpperCase()}`
 
-    renderParts(partsData[currentPart]);
+    renderParts(partsData[currentPart])
 
-  });
+  }
 
-});
+})
 
-// CLOSE MODAL
-
-closeModal.addEventListener("click", () => {
-  modal.classList.remove("active");
-});
-
-// RENDER PARTS
+closeModal.onclick = () => {
+  modal.classList.remove("active")
+}
 
 function renderParts(parts) {
 
-  partsContainer.innerHTML = "";
+  partsContainer.innerHTML = ""
 
   parts.forEach(part => {
 
-    const div = document.createElement("div");
+    const div = document.createElement("div")
 
-    div.classList.add("part-item");
+    div.className = "part-item"
 
     div.innerHTML = `
       <h3>${part.name}</h3>
       <p>${part.price}</p>
-    `;
+    `
 
-    div.addEventListener("click", () => {
+    div.onclick = () => {
 
-      selectedBuild[currentPart] = part;
+      selectedBuild[currentPart] = part
 
-      updatePreview();
+      updatePreview()
 
-      modal.classList.remove("active");
+      modal.classList.remove("active")
 
-    });
+    }
 
-    partsContainer.appendChild(div);
+    partsContainer.appendChild(div)
 
-  });
+  })
 
 }
-
-// UPDATE PREVIEW
 
 function updatePreview() {
 
@@ -137,20 +121,20 @@ function updatePreview() {
 
     <p>PSU: ${selectedBuild.psu ? selectedBuild.psu.name : "Ingen vald"}</p>
 
-  `;
+  `
 
 }
 
-// SEARCH
+searchInput.oninput = () => {
 
-searchInput.addEventListener("input", () => {
-
-  const value = searchInput.value.toLowerCase();
+  const value = searchInput.value
+    .trim()
+    .toLowerCase()
 
   const filtered = partsData[currentPart].filter(part =>
     part.name.toLowerCase().includes(value)
-  );
+  )
 
-  renderParts(filtered);
+  renderParts(filtered)
 
-});
+}

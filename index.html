@@ -1,155 +1,210 @@
 <!DOCTYPE html>
 <html lang="sv">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PcBuilds</title>
-    <link rel="stylesheet" href="style.css"/>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PcBuilds</title>
+
+  <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
-    
-    <header>
-        <nav class="navbar">
 
-            <!--PcLogo-->
-            <div>
-                PcBuilds
-            </div>
+  <header>
+    <nav class="navbar">
 
-            <!--Hamburgare-->
-            <div class="hamburger" id="hamburger">☰</div>
+      <div class="logo">PcBuilds</div>
 
-            <!--Meny-->
-            <ul class="nav-menu" id="navMenu">
-                <li><a href="#">Kontakt</a></li>
-                <li><a href="#">Om oss</a></li>
-                <li><a href="#">Hjälp</a></li>
-                <li><a href="#" class="login-btn">Logga In</a></li>
-            </ul>
+      <div class="hamburger" id="hamburger">☰</div>
 
-        </nav>
-    </header>
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="#">Kontakt</a></li>
+        <li><a href="#">Om oss</a></li>
+        <li><a href="#">Hjälp</a></li>
+        <li><a href="#" class="login-btn">Logga In</a></li>
+      </ul>
 
-    <section class="search-section">
+    </nav>
+  </header>
 
-  <form class="search-bar">
-    <input 
-      type="text" 
-      placeholder="Sök datorer..."
-    />
+  <section class="search-section">
 
-    <button type="submit">
-      Sök
-    </button>
-  </form>
+    <form class="search-bar">
+      <input type="text" placeholder="Sök datorer..." />
+      <button type="submit">Sök</button>
+    </form>
 
-</section>
+  </section>
 
-<section class="prebuild-section">
+  <section class="prebuild-section">
 
-  <div class="section-header">
-    <h2>PreBuilds</h2>
+    <div class="section-header">
+      <h2>PreBuilds</h2>
+    </div>
+
+    <div class="prebuild-container">
+
+      <div class="card">
+        <div class="card-image"></div>
+        <h3>Gaming Beast</h3>
+        <p>RTX 4070 • Ryzen 7</p>
+      </div>
+
+      <div class="card">
+        <div class="card-image"></div>
+        <h3>Budget Build</h3>
+        <p>RTX 4060 • i5</p>
+      </div>
+
+      <div class="card">
+        <div class="card-image"></div>
+        <h3>Streamer PC</h3>
+        <p>RTX 4080 • Ryzen 9</p>
+      </div>
+
+      <div class="card">
+        <div class="card-image"></div>
+        <h3>Ultimate Setup</h3>
+        <p>RTX 4090 • i9</p>
+      </div>
+
+    </div>
+
+  </section>
+
+  <section class="builder-section">
+
+    <div class="parts-sidebar">
+
+      <button class="part-btn" data-part="gpu">GPU</button>
+      <button class="part-btn" data-part="cpu">CPU</button>
+      <button class="part-btn" data-part="ram">RAM</button>
+      <button class="part-btn" data-part="ssd">SSD</button>
+      <button class="part-btn" data-part="psu">PSU</button>
+
+      <div class="purchase-box">
+        <h3>Ready to order?</h3>
+        <p>Buy your custom PC build instantly.</p>
+        <button class="purchase-btn">Purchase Build</button>
+      </div>
+
+    </div>
+
+    <div class="preview-panel">
+
+      <div class="build-info">
+
+        <h2>Din Build</h2>
+
+        <div id="selectedParts">
+          <p>GPU: Ingen vald</p>
+          <p>CPU: Ingen vald</p>
+          <p>RAM: Ingen vald</p>
+          <p>SSD: Ingen vald</p>
+          <p>PSU: Ingen vald</p>
+        </div>
+
+      </div>
+
+      <div class="pc-preview">
+
+        <video
+          class="pc-video"
+          autoplay
+          loop
+          muted
+          playsinline
+          preload="auto">
+
+          <source src="frr0001-0200.webm" type="video/webm" />
+
+        </video>
+
+      </div>
+
+      <div id="quickchat-embedded"></div>
+
+    </div>
+
+  </section>
+
+  <div class="modal" id="partModal">
+
+    <div class="modal-content">
+
+      <div class="modal-top">
+        <h2 id="modalTitle">Välj Del</h2>
+        <button id="closeModal">✖</button>
+      </div>
+
+      <input
+        type="text"
+        id="searchInput"
+        placeholder="Sök delar..."
+      />
+
+      <div id="partsContainer"></div>
+
+    </div>
+
   </div>
 
-  <div class="prebuild-container" id="prebuildContainer">
+  <footer class="footer">
 
-    <div class="card">
-      <div class="card-image"></div>
-      <h3>Gaming Beast</h3>
-      <p>RTX 4070 • Ryzen 7</p>
-    </div>
+    <div class="footer-container">
 
-    <div class="card">
-      <div class="card-image"></div>
-      <h3>Budget Build</h3>
-      <p>RTX 4060 • i5</p>
-    </div>
+      <div class="footer-brand">
+        <h2>PcBuilds</h2>
+        <p>Bygg din drömdator enkelt.</p>
+      </div>
 
-    <div class="card">
-      <div class="card-image"></div>
-      <h3>Streamer PC</h3>
-      <p>RTX 4080 • Ryzen 9</p>
-    </div>
+      <div class="footer-links">
+        <h3>Länkar</h3>
 
-    <div class="card">
-      <div class="card-image"></div>
-      <h3>Ultimate Setup</h3>
-      <p>RTX 4090 • i9</p>
-    </div>
+        <a href="#">Hem</a>
+        <a href="#">Prebuilds</a>
+        <a href="#">Kontakt</a>
+        <a href="#">Hjälp</a>
+      </div>
 
-    <div class="card">
-      <div class="card-image"></div>
-      <h3>Mini Build</h3>
-      <p>RTX 4060 • Ryzen 5</p>
-    </div>
+      <div class="footer-social">
+        <h3>Socialt</h3>
 
-    <div class="card">
-      <div class="card-image"></div>
-      <h3>White Edition</h3>
-      <p>RTX 4070 Ti • i7</p>
-    </div>
-
-  </div>
-
-</section>
-
-<section class="builder-section">
-
-  <!-- LEFT SIDE -->
-  <div class="parts-sidebar">
-
-    <button class="part-btn" data-part="gpu">GPU</button>
-    <button class="part-btn" data-part="cpu">CPU</button>
-    <button class="part-btn" data-part="ram">RAM</button>
-    <button class="part-btn" data-part="ssd">SSD</button>
-    <button class="part-btn" data-part="psu">PSU</button>
-
-  </div>
-
-  <!-- RIGHT SIDE -->
-  <div class="preview-panel">
-
-    <h2>Din Build</h2>
-
-    <div id="selectedParts">
-
-      <p>GPU: Ingen vald</p>
-      <p>CPU: Ingen vald</p>
-      <p>RAM: Ingen vald</p>
-      <p>SSD: Ingen vald</p>
-      <p>PSU: Ingen vald</p>
+        <a href="#">Instagram</a>
+        <a href="#">Discord</a>
+        <a href="#">YouTube</a>
+      </div>
 
     </div>
 
-  </div>
-
-</section>
-
-<!-- MODAL -->
-<div class="modal" id="partModal">
-
-  <div class="modal-content">
-
-    <div class="modal-top">
-
-      <h2 id="modalTitle">Välj Del</h2>
-
-      <button id="closeModal">✖</button>
-
+    <div class="footer-bottom">
+      © 2026 PcBuilds. Alla rättigheter reserverade.
     </div>
 
-    <input
-      type="text"
-      id="searchInput"
-      placeholder="Sök delar..."
-    />
+  </footer>
 
-    <div id="partsContainer"></div>
+  <script src="script.js"></script>
 
-  </div>
+  <script>
+    (function (e, a, d, i, c, t = a.createElement(d)) {
 
-</div>
+      e[c] = e[c] || function () {
+        (e[c].q = e[c].q || []).push(arguments)
+      }
 
-    <script src="script.js"></script>
+      t.src = i
+      t.async = 1
+
+      a.body.insertAdjacentElement("beforeend", t)
+
+    })(window, document, "script", "https://bubble.quickchat.ai/chat.js", "_quickchat")
+
+    _quickchat("containerId", "quickchat-embedded")
+    _quickchat("init", "i9gxlitpia")
+
+  </script>
+
 </body>
+
 </html>
