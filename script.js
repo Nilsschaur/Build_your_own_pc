@@ -1,9 +1,13 @@
+// NAVBAR
+
 const hamburger = document.getElementById("hamburger")
 const navMenu = document.getElementById("navMenu")
 
 hamburger.onclick = () => {
   navMenu.classList.toggle("active")
 }
+
+// DATA
 
 const partsData = {
 
@@ -38,6 +42,8 @@ const partsData = {
 
 }
 
+// SELECTED BUILD
+
 const selectedBuild = {
   gpu: null,
   cpu: null,
@@ -45,6 +51,8 @@ const selectedBuild = {
   ssd: null,
   psu: null
 }
+
+// ELEMENTS
 
 const modal = document.getElementById("partModal")
 const modalTitle = document.getElementById("modalTitle")
@@ -54,6 +62,8 @@ const searchInput = document.getElementById("searchInput")
 const selectedParts = document.getElementById("selectedParts")
 
 let currentPart = ""
+
+// OPEN MODAL
 
 document.querySelectorAll(".part-btn").forEach(button => {
 
@@ -72,9 +82,13 @@ document.querySelectorAll(".part-btn").forEach(button => {
 
 })
 
+// CLOSE MODAL
+
 closeModal.onclick = () => {
   modal.classList.remove("active")
 }
+
+// RENDER PARTS
 
 function renderParts(parts) {
 
@@ -107,6 +121,8 @@ function renderParts(parts) {
 
 }
 
+// UPDATE PREVIEW
+
 function updatePreview() {
 
   selectedParts.innerHTML = `
@@ -124,6 +140,8 @@ function updatePreview() {
   `
 
 }
+
+//SEARCH
 
 searchInput.oninput = () => {
 
