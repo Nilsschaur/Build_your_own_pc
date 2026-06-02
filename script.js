@@ -42,6 +42,82 @@ const partsData = {
 
 }
 
+const prebuildData = {
+
+  gamingbeast: {
+    name: "Gaming Beast",
+    images: [
+      "PcPics/beast.webp",
+      "PcPics/beast1.webp"
+    ]
+  },
+
+  togerthetiger: {
+    name: "Toger The Tiger",
+    images: [
+      "PcPics/fancy.webp",
+      "PcPics/fancy1.webp"
+    ]
+  },
+
+  alisbuild: {
+    name: "Ali's Build",
+    images: [
+      "PcPics/abitboring.webp",
+      "PcPics/abitboring1.webp"
+    ]
+  },
+
+  bigbrother: {
+    name: "Big Brother",
+    images: [
+      "PcPics/Big Brother.png",
+      "PcPics/Big Brother.png"
+    ]
+  },
+
+  kallekralle: {
+    name: "Kalle Kralle",
+    images: [
+      "PcPics/noir.webp",
+      "PcPics/noir1.webp"
+    ]
+  },
+
+  budgetbuild: {
+    name: "Budget Build",
+    images: [
+      "PcPics/white.webp",
+      "PcPics/white1.webp"
+    ]
+  },
+
+  kycklingko: {
+    name: "Kycklingko",
+    images: [
+      "PcPics/shadow.webp",
+      "PcPics/shadow1.webp"
+    ]
+  },
+
+  streamerpc: {
+    name: "Streamer Pc",
+    images: [
+      "PcPics/shadow.webp",
+      "PcPics/shadow1.webp"
+    ]
+  },
+
+  ultimatesetup: {
+    name: "Ultimate Setup",
+    images: [
+      "PcPics/shadow.webp",
+      "PcPics/shadow1.webp"
+    ]
+  },
+
+}
+
 // SELECTED BUILD
 
 const selectedBuild = {
@@ -156,3 +232,60 @@ searchInput.oninput = () => {
   renderParts(filtered)
 
 }
+
+const prebuildModal =
+  document.getElementById("prebuildModal")
+
+const closePrebuild =
+  document.getElementById("closePrebuild")
+
+const gallery =
+  document.getElementById("gallery")
+
+const buildName =
+  document.getElementById("buildName")
+
+document.querySelectorAll(".card")
+  .forEach(card => {
+
+    card.addEventListener("click", () => {
+
+      const build =
+        prebuildData[card.dataset.build]
+
+      if (!build) return
+
+      buildName.textContent = build.name
+
+      gallery.innerHTML = ""
+
+      build.images.forEach(image => {
+
+        const img =
+          document.createElement("img")
+
+        img.src = image
+
+        gallery.appendChild(img)
+
+      })
+
+      prebuildModal.classList.add("active")
+
+    })
+
+})
+
+closePrebuild.addEventListener("click", () => {
+  prebuildModal.classList.remove("active")
+})
+
+prebuildModal.addEventListener("click", e => {
+
+  if (e.target === prebuildModal) {
+
+    prebuildModal.classList.remove("active")
+
+  }
+
+})
