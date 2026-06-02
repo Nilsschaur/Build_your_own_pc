@@ -75,3 +75,15 @@ body {
   transform: scale(1.05);
   background: #ff1744;
 }
+
+@media (max-width: 768px) {
+
+  .checkout-container {
+    padding: 2rem 1rem;
+  }
+
+  .checkout-container h1 {
+    font-size: 1.8rem;
+  }
+
+}

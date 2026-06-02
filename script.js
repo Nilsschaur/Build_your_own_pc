@@ -29,16 +29,19 @@ Element.prototype.scrollIntoView = function () {
 };
 
 
-// NAVBAR
+// NAVBAR MOBILMENY (HAMBURGERMENY)
 
-const hamburger = document.getElementById("hamburger")
-const navMenu = document.getElementById("navMenu")
+const hamburger = document.getElementById("hamburger");
+const navMenu = document.getElementById("navMenu");
 
-hamburger.onclick = () => {
-  navMenu.classList.toggle("active")
+if (hamburger && navMenu) {
+  hamburger.onclick = () => {
+    navMenu.classList.toggle("active");
+  };
 }
 
-// DATA
+// DATA FÖR ALLA KOMPONENTER
+// VISAS I BYGGVERKTYGET
 
 const partsData = {
 
@@ -72,6 +75,9 @@ const partsData = {
   ]
 
 }
+
+//DATA FÖR PREBUILDS
+//BILDER OCH NAMN SOM VISAS I MODALEN
 
 const prebuildData = {
 
@@ -170,7 +176,8 @@ const selectedParts = document.getElementById("selectedParts")
 
 let currentPart = ""
 
-// OPEN MODAL
+// ÖPPNA KOMPONENTMODAL
+//NÄR ANVÖNDAREN KLICKAR PÅ GPU/CPU/RAM
 
 document.querySelectorAll(".part-btn").forEach(button => {
 
@@ -191,11 +198,12 @@ document.querySelectorAll(".part-btn").forEach(button => {
 
 // CLOSE MODAL
 
-closeModal.onclick = () => {
-  modal.classList.remove("active")
+if (closeModal && modal) {
+  closeModal.onclick = () => {
+    modal.classList.remove("active");
+  };
 }
-
-// RENDER PARTS
+// VISAR ALLAR DELAR I MODALEN
 
 function renderParts(parts) {
 
@@ -228,7 +236,8 @@ function renderParts(parts) {
 
 }
 
-// UPDATE PREVIEW
+// UPDATERA FÖRHANDSVISNGEN
+// VISAR VALDA KOMPONENTER
 
 function updatePreview() {
 
@@ -248,20 +257,22 @@ function updatePreview() {
 
 }
 
-//SEARCH
+//SÖKFUNKTION FÖR KOMPONENTER
+//FILTERAR KOMPONENETER I MODALEN
 
-searchInput.oninput = () => {
+if (searchInput) {
+  searchInput.oninput = () => {
 
-  const value = searchInput.value
-    .trim()
-    .toLowerCase()
+    const value = searchInput.value
+      .trim()
+      .toLowerCase();
 
-  const filtered = partsData[currentPart].filter(part =>
-    part.name.toLowerCase().includes(value)
-  )
+    const filtered = partsData[currentPart].filter(part =>
+      part.name.toLowerCase().includes(value)
+    );
 
-  renderParts(filtered)
-
+    renderParts(filtered);
+  };
 }
 
 const prebuildModal =
@@ -275,6 +286,9 @@ const gallery =
 
 const buildName =
   document.getElementById("buildName")
+
+//PREBUILD MODAL
+//ÖPPNAR DETALJER FÖR FÄRDIGBYGGDA DATORER
 
 document.querySelectorAll(".card")
   .forEach(card => {
@@ -307,19 +321,21 @@ document.querySelectorAll(".card")
 
 })
 
-closePrebuild.addEventListener("click", () => {
-  prebuildModal.classList.remove("active")
-})
+if (closePrebuild && prebuildModal) {
+  closePrebuild.addEventListener("click", () => {
+    prebuildModal.classList.remove("active");
+  });
+}
 
-prebuildModal.addEventListener("click", e => {
+if (prebuildModal) {
+  prebuildModal.addEventListener("click", e => {
 
-  if (e.target === prebuildModal) {
+    if (e.target === prebuildModal) {
+      prebuildModal.classList.remove("active");
+    }
 
-    prebuildModal.classList.remove("active")
-
-  }
-
-})
+  });
+}
 
 //SEARCH BAR
 
@@ -329,53 +345,79 @@ const prebuildSearch =
 const prebuildCards =
   document.querySelectorAll(".card")
 
-prebuildSearch.addEventListener("input", () => {
+//SÖK PREBUILDS PÅ STARTSIDAN
 
-  const searchValue =
-    prebuildSearch.value.toLowerCase().trim()
+if (prebuildSearch) {
+  prebuildSearch.addEventListener("input", () => {
 
-  prebuildCards.forEach(card => {
+    const searchValue =
+      prebuildSearch.value.toLowerCase().trim();
 
-    const buildName =
-      card.querySelector("h3").textContent.toLowerCase()
+    prebuildCards.forEach(card => {
 
-    const buildSpecs =
-      card.querySelector("p").textContent.toLowerCase()
+      const buildName =
+        card.querySelector("h3").textContent.toLowerCase();
 
-    const matches =
-      buildName.includes(searchValue) ||
-      buildSpecs.includes(searchValue)
+      const buildSpecs =
+        card.querySelector("p").textContent.toLowerCase();
 
-    card.style.display =
-      matches ? "block" : "none"
+      const matches =
+        buildName.includes(searchValue) ||
+        buildSpecs.includes(searchValue);
 
-  })
+      card.style.display =
+        matches ? "block" : "none";
+    });
 
-})
+  });
+}
 
-document.querySelector(".search-bar")
-  .addEventListener("submit", e => {
-    e.preventDefault()
-  })
+const searchBar = document.querySelector(".search-bar");
+
+if (searchBar) {
+  searchBar.addEventListener("submit", e => {
+    e.preventDefault();
+  });
+}
 
 const purchaseBtn =
   document.querySelector(".purchase-btn")
 
-purchaseBtn.addEventListener("click", () => {
+//KÖP KNAPP
+//SPARAR BUILD I LOCALSTORAGE
+if (purchaseBtn) {
+  purchaseBtn.addEventListener("click", () => {
 
-  const missingPart =
-    Object.values(selectedBuild).some(part => !part)
+    const missingPart =
+      Object.values(selectedBuild).some(part => !part);
 
-  if (missingPart) {
-    alert("Välj alla delar först!")
-    return
-  }
+    if (missingPart) {
+      alert("Välj alla delar först!");
+      return;
+    }
 
-  localStorage.setItem(
-    "pcBuild",
-    JSON.stringify(selectedBuild)
-  )
+    localStorage.setItem(
+      "pcBuild",
+      JSON.stringify(selectedBuild)
+    );
 
-  window.location.href = "checkout.html"
+    window.location.href = "checkout.html";
 
-})
+  });
+}
+
+console.log("FAQ code loaded");
+
+//FAQ-SYSTEM
+//ÖPPNA STÄNG FRÅGOR PÅ HJÄLP-SIDAN
+
+const faqQuestions = document.querySelectorAll(".faq-question");
+
+console.log("Found FAQ buttons:", faqQuestions.length);
+
+faqQuestions.forEach(question => {
+  question.addEventListener("click", () => {
+    console.log("FAQ clicked");
+    question.parentElement.classList.toggle("active");
+  });
+});
