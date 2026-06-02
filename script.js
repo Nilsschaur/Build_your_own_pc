@@ -1,3 +1,34 @@
+let savedScrollY = 0;
+
+window.addEventListener("beforeunload", () => {
+  savedScrollY = window.scrollY;
+});
+
+window.addEventListener("load", () => {
+  window.scrollTo(0, 0);
+
+  // re-lock scroll after Quickchat has time to misbehave
+  setTimeout(() => {
+    window.scrollTo(0, 0);
+  }, 50);
+
+  setTimeout(() => {
+    window.scrollTo(0, 0);
+  }, 300);
+});
+
+
+const originalScrollIntoView = Element.prototype.scrollIntoView;
+
+Element.prototype.scrollIntoView = function () {
+  // block Quickchat from forcing scroll
+  if (this.id === "quickchat-embedded") return;
+  if (this.closest && this.closest("#quickchat-embedded")) return;
+
+  return originalScrollIntoView.apply(this, arguments);
+};
+
+
 // NAVBAR
 
 const hamburger = document.getElementById("hamburger")
@@ -287,5 +318,64 @@ prebuildModal.addEventListener("click", e => {
     prebuildModal.classList.remove("active")
 
   }
+
+})
+
+//SEARCH BAR
+
+const prebuildSearch =
+  document.getElementById("prebuildSearch")
+
+const prebuildCards =
+  document.querySelectorAll(".card")
+
+prebuildSearch.addEventListener("input", () => {
+
+  const searchValue =
+    prebuildSearch.value.toLowerCase().trim()
+
+  prebuildCards.forEach(card => {
+
+    const buildName =
+      card.querySelector("h3").textContent.toLowerCase()
+
+    const buildSpecs =
+      card.querySelector("p").textContent.toLowerCase()
+
+    const matches =
+      buildName.includes(searchValue) ||
+      buildSpecs.includes(searchValue)
+
+    card.style.display =
+      matches ? "block" : "none"
+
+  })
+
+})
+
+document.querySelector(".search-bar")
+  .addEventListener("submit", e => {
+    e.preventDefault()
+  })
+
+const purchaseBtn =
+  document.querySelector(".purchase-btn")
+
+purchaseBtn.addEventListener("click", () => {
+
+  const missingPart =
+    Object.values(selectedBuild).some(part => !part)
+
+  if (missingPart) {
+    alert("Välj alla delar först!")
+    return
+  }
+
+  localStorage.setItem(
+    "pcBuild",
+    JSON.stringify(selectedBuild)
+  )
+
+  window.location.href = "checkout.html"
 
 })
