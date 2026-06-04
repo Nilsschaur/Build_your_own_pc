@@ -140,16 +140,16 @@ const prebuildData = {
   streamerpc: {
     name: "Streamer Pc",
     images: [
-      "PcPics/shadow.webp",
-      "PcPics/shadow1.webp"
+      "PcPics/kickstartermaelstrom.webp",
+      "PcPics/kickstartermaelstrom1.webp"
     ]
   },
 
   ultimatesetup: {
     name: "Ultimate Setup",
     images: [
-      "PcPics/shadow.webp",
-      "PcPics/shadow1.webp"
+      "PcPics/streamer.webp",
+      "PcPics/streamer1.webp"
     ]
   },
 
