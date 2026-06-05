@@ -8,7 +8,11 @@ body {
   min-height: 100vh;
   font-family: Arial, sans-serif;
 
-  background: radial-gradient(circle at top, #ffffff, #e9ecef);
+  background:
+    radial-gradient(circle at top left,
+      #222 0%,
+      #141414 40%,
+      #0b0b0b 100%);
 
   display: flex;
   justify-content: center;
